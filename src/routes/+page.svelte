@@ -58,9 +58,9 @@
 
 <div bind:this={container} class="container">
     <nav id="nav">
-        <h1 on:click={() => window.location.href = '#nav'}>MIS</h1>
+        <h1 on:click={() => window.location.href = '/'}>MIS</h1>
         <div class="links">
-            <div class="myaccount">
+            <div on:click={() => window.location.href = '/account'} class="myaccount">
                 <UserAvatarFilled size={38} />
                 <span>My Account</span>
             </div>
@@ -77,8 +77,9 @@
         {#if showRes}
             {#each items as item}
                 <div on:click={() => window.open(item.image.contextLink)} class="item">
-                    <h2>{item.title}</h2>
+                    <!-- svelte-ignore a11y-img-redundant-alt -->
                     <img src={item.link} alt="Result Image">
+                    <h2>{item.title}</h2>
                     <span>{item.displayLink}</span>
                 </div>
             {/each}
@@ -277,22 +278,24 @@
         flex-wrap: wrap;
         padding-left: 175px;
         padding-right: 175px;
+        gap: 7px;
 
         .item {
             width: 300px;
-            height: 450px;
+            height: 350px;
             box-shadow: 0 5px 5px 0px rgba(0,0,0,0.25);
             -webkit-box-shadow: 0 5px 5px 0px rgba(0,0,0,0.25);
             -moz-box-shadow: 0 5px 5px 0px rgba(0,0,0,0.25);
             background-color: lighten($accent, 55%);
             margin: 15px;
             border-radius: 15px;
-            padding: 40px;
+            padding: 20px;
             cursor: pointer;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-evenly;
+            justify-content: space-between;
+            text-align: center;
 
             h2 {
                 font-size: 18px;
@@ -303,9 +306,9 @@
             }
             
             img {
-                width: 250px;
+                width: 200px;
                 border-radius: 8px;
-                max-height: 250px;
+                max-height: 200px;
             }
         }
     }
